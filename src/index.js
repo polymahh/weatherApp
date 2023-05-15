@@ -2,7 +2,7 @@ import './style.css';
 import getApi from './apiData';
 
 const myApp = {
-  currentCity: 'London',
+  currentCity: 'safi',
   init() {
     this.casheDome();
     this.bindEvents();
@@ -13,9 +13,9 @@ const myApp = {
     this.search = document.getElementById('search');
     this.title = document.getElementById('title');
     this.body = document.getElementById('body');
-    this.info = document.getElementById('info');
+    this.temp = document.getElementById('temp');
     this.wind = document.getElementById('wind');
-    this.weather = document.getElementById('weather');
+    this.humidity = document.getElementById('humidity');
     this.disc = document.getElementById('disc');
     this.topIcon = document.getElementById('top-icon');
     this.time = document.getElementById('time');
@@ -23,8 +23,12 @@ const myApp = {
   bindEvents() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
-      this.currentCity = this.search.value;
-      this.getData();
+      if (search.value === '') {
+        alert('search field cant be empty');
+      } else {
+        this.currentCity = this.search.value;
+        this.getData();
+      }
     });
   },
   async getData() {
@@ -38,9 +42,9 @@ const myApp = {
     this.render(result);
   },
   render(result) {
-    this.info.innerHTML = '';
+    this.temp.innerHTML = '';
     this.wind.innerHTML = '';
-    this.weather.innerHTML = '';
+    this.humidity.innerHTML = '';
     this.disc.innerText = '';
     this.time.innerHTML = '';
     this.title.innerText = result.name;
@@ -49,22 +53,18 @@ const myApp = {
     const myTime = new Date(result.dt * 1000);
     console.log(myTime);
     this.time.innerText = myTime.toDateString();
-    const info1 = document.createElement('span');
-    info1.innerText = result.main.feels_like;
-    const info2 = document.createElement('span');
-    info2.innerText = result.main.humidity;
-    const info3 = document.createElement('span');
-    info3.innerText = result.main.pressure;
+    const temp1 = document.createElement('span');
+    temp1.innerText = `${result.main.feels_like} °C`;
 
     const wind1 = document.createElement('span');
     wind1.innerText = result.wind.speed;
 
-    const weather1 = document.createElement('span');
-    weather1.innerText = result.weather[0].description;
+    const humidity1 = document.createElement('span');
+    humidity1.innerText = `${result.main.humidity} %`;
 
-    this.info.append(info1, info2, info3);
+    this.temp.appendChild(temp1);
     this.wind.appendChild(wind1);
-    this.weather.appendChild(weather1);
+    this.humidity.appendChild(humidity1);
     console.log(this.wind.childNodes);
   },
 };

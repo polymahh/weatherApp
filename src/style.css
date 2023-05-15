@@ -20,7 +20,7 @@ body{
     width: 40%;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 20px 20px 40px;
     background-color: rgb(25, 21, 46);
     color: #fff;
     border-radius: 15px;
@@ -41,7 +41,6 @@ body{
 
 .search form input {
     appearance: none;
-    
     margin: 0px 15px;
     display: block;
     width: 100%;
@@ -73,6 +72,11 @@ body{
     font-weight: bold;
 }
 
+h3{
+    margin: 0; 
+}
+
+
 .container section{
     display: flex;
     flex-wrap: wrap;
@@ -84,10 +88,15 @@ body{
     min-width: 50%;
 }
 
-span {
-    display: block;
+#body div small{
+    padding-left: 6px;
 }
 
-#info {
-    flex-grow: 2;
+#body div div{
+    padding-left: 27px;
+    margin-bottom: 8px;
+}
+
+span {
+    display: block;
 }
